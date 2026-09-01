@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Support My Work ❤️</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 30px 15px;
+
+      background:
+        radial-gradient(circle at top, #243b55 0%, #141e30 50%, #090d14 100%);
+
+      color: white;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+
+      text-align: center;
+
+      background: rgba(255,255,255,0.08);
+
+      border: 1px solid rgba(255,255,255,0.15);
+
+      padding: 45px 30px;
+
+      border-radius: 30px;
+
+      backdrop-filter: blur(15px);
+
+      box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    }
+
+    .heart {
+      font-size: 55px;
+      margin-bottom: 15px;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .subtitle {
+      color: #cbd5e1;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .donate-title {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+
+    /* =========================
+       DONATION BUTTONS
+    ========================== */
+
+    .donation-options {
+
+      display: grid;
+
+      grid-template-columns: repeat(5, 1fr);
+
+      gap: 12px;
+
+      margin-bottom: 30px;
+
+    }
+
+    .donate-option {
+
+      border: none;
+
+      padding: 18px 10px;
+
+      border-radius: 15px;
+
+      cursor: pointer;
+
+      font-size: 20px;
+
+      font-weight: bold;
+
+      background: #ffffff;
+
+      color: #111827;
+
+      transition: all 0.25s ease;
+
+    }
+
+    .donate-option:hover {
+
+      transform: translateY(-5px);
+
+      background: #ffc439;
+
+      box-shadow:
+        0 12px 30px rgba(255,196,57,0.35);
+
+    }
+
+    .donate-option.popular {
+
+      background: #ffc439;
+
+      transform: scale(1.05);
+
+    }
+
+    .donate-option.popular:hover {
+
+      transform: translateY(-5px) scale(1.08);
+
+    }
+
+
+    .paypal-text {
+
+      color: #9ca3af;
+
+      font-size: 14px;
+
+    }
+
+    .paypal-logo {
+
+      color: #ffc439;
+
+      font-weight: bold;
+
+    }
+
+
+    /* =========================
+       POPUP
+    ========================== */
+
+    .popup-overlay {
+
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: rgba(0,0,0,0.78);
+
+      backdrop-filter: blur(8px);
+
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+
+      padding: 20px;
+
+      z-index: 9999;
+
+    }
+
+    .popup-overlay.active {
+
+      display: flex;
+
+    }
+
+    .popup {
+
+      width: 100%;
+      max-width: 430px;
+
+      position: relative;
+
+      background: white;
+
+      color: #111827;
+
+      padding: 35px 25px;
+
+      border-radius: 28px;
+
+      text-align: center;
+
+      animation: popupAnimation 0.35s ease;
+
+      box-shadow:
+        0 30px 90px rgba(0,0,0,0.6);
+
+    }
+
+
+    @keyframes popupAnimation {
+
+      from {
+
+        transform: translateY(30px) scale(0.9);
+
+        opacity: 0;
+
+      }
+
+      to {
+
+        transform: translateY(0) scale(1);
+
+        opacity: 1;
+
+      }
+
+    }
+
+
+    .close-btn {
+
+      position: absolute;
+
+      top: 15px;
+      right: 18px;
+
+      width: 38px;
+      height: 38px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: #f1f5f9;
+
+      font-size: 24px;
+
+      cursor: pointer;
+
+    }
+
+
+    .popup h2 {
+
+      margin-top: 10px;
+
+      margin-bottom: 10px;
+
+      font-size: 27px;
+
+    }
+
+
+    .selected-amount {
+
+      font-size: 38px;
+
+      font-weight: bold;
+
+      color: #0070ba;
+
+      margin: 15px 0;
+
+    }
+
+
+    .popup p {
+
+      color: #64748b;
+
+      line-height: 1.6;
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .qr-container {
+
+      width: 260px;
+      height: 260px;
+
+      max-width: 100%;
+
+      margin: auto;
+
+      padding: 10px;
+
+      border: 2px solid #e2e8f0;
+
+      border-radius: 18px;
+
+      background: white;
+
+    }
+
+
+    .qr-container img {
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+    }
+
+
+    .thank-you {
+
+      margin-top: 20px;
+
+      font-weight: bold;
+
+      color: #334155;
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media(max-width: 600px) {
+
+      .container {
+
+        padding: 35px 18px;
+
+      }
+
+      h1 {
+
+        font-size: 30px;
+
+      }
+
+      .donation-options {
+
+        grid-template-columns: repeat(2, 1fr);
+
+      }
+
+      .donate-option:last-child {
+
+        grid-column: span 2;
+
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+  <div class="heart">
+    ❤️
+  </div>
+
+
+  <h1>
+    Support My Work
+  </h1>
+
+
+  <p class="subtitle">
+
+    If you enjoy my content and would like to support me,
+    choose an amount below.
+
+    <br><br>
+
+    Every contribution means a lot. ❤️
+
+  </p>
+
+
+  <div class="donate-title">
+
+    Choose your support amount
+
+  </div>
+
+
+  <!-- DONATION AMOUNTS -->
+
+  <div class="donation-options">
+
+    <button
+      class="donate-option"
+      onclick="openDonate('$2')"
+    >
+      💖 $2
+    </button>
+
+
+    <button
+      class="donate-option"
+      onclick="openDonate('$5')"
+    >
+      ❤️ $5
+    </button>
+
+
+    <button
+      class="donate-option popular"
+      onclick="openDonate('$10')"
+    >
+      ⭐ $10
+    </button>
+
+
+    <button
+      class="donate-option"
+      onclick="openDonate('$20')"
+    >
+      👑 $20
+    </button>
+
+
+    <button
+      class="donate-option"
+      onclick="openDonate('$50')"
+    >
+      🔥 $50
+    </button>
+
+  </div>
+
+
+  <div class="paypal-text">
+
+    Secure donation via
+    <span class="paypal-logo">
+      PayPal
+    </span>
+
+  </div>
+
+
+</div>
+
+
+
+<!-- =========================
+     QR POPUP
+========================== -->
+
+<div
+  class="popup-overlay"
+  id="donatePopup"
+  onclick="closeOutside(event)"
+>
+
+
+  <div class="popup">
+
+
+    <button
+      class="close-btn"
+      onclick="closeDonate()"
+    >
+      ×
+    </button>
+
+
+    <h2>
+      ❤️ Thank You!
+    </h2>
+
+
+    <div
+      class="selected-amount"
+      id="selectedAmount"
+    >
+      $10
+    </div>
+
+
+    <p>
+
+      Scan the QR code below to complete
+      your PayPal donation.
+
+    </p>
+
+
+    <div class="qr-container">
+
+      <!--
+      ĐỔI TÊN FILE QR CỦA BẠN THÀNH:
+      paypal-qr.jfif
+
+      HOẶC đổi src bên dưới thành tên ảnh của bạn.
+      -->
+
+      <img
+        src="paypal-qr.jfif"
+        alt="PayPal Donation QR Code"
+      >
+
+    </div>
+
+
+    <div class="thank-you">
+
+      Thank you so much for your support ❤️
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+<script>
+
+  const popup =
+    document.getElementById("donatePopup");
+
+
+  const selectedAmount =
+    document.getElementById("selectedAmount");
+
+
+  function openDonate(amount) {
+
+    selectedAmount.textContent = amount;
+
+    popup.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+  }
+
+
+  function closeDonate() {
+
+    popup.classList.remove("active");
+
+    document.body.style.overflow = "auto";
+
+  }
+
+
+  function closeOutside(event) {
+
+    if (event.target === popup) {
+
+      closeDonate();
+
+    }
+
+  }
+
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Escape") {
+
+        closeDonate();
+
+      }
+
+    }
+  );
+
+</script>
+
+
+</body>
+</html>
